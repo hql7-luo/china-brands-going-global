@@ -1,0 +1,125 @@
+company,period,metric,value,unit,source_id,note
+popmart,FY2023,revenue,6301.0,RMB m,PM_FY23,
+popmart,FY2023,overseas_revenue,1066.0,RMB m,PM_FY23,"Old definition: Hong Kong, Macau, Taiwan and overseas"
+popmart,FY2023,gross_margin,61.3,%,PM_FY23,
+popmart,FY2024,revenue,13037.7,RMB m,PM_FY25,FY2024 comparatives in FY2025 announcement
+popmart,FY2024,gross_profit,8707.8,RMB m,PM_FY25,
+popmart,FY2024,adj_net_profit,3403.2,RMB m,PM_FY25,Non-IFRS adjusted
+popmart,FY2024,rev_asia_pacific,3109.7,RMB m,PM_FY25,
+popmart,FY2024,rev_americas,802.2,RMB m,PM_FY25,
+popmart,FY2024,rev_europe_other,239.3,RMB m,PM_FY25,
+popmart,FY2024,stores_asia_pacific,54,stores,PM_FY25,
+popmart,FY2024,stores_americas,22,stores,PM_FY25,
+popmart,FY2024,stores_europe_other,14,stores,PM_FY25,
+popmart,FY2024,stores_total,521,stores,PM_FY25,
+popmart,FY2024,stores_mainland,401,stores,PM_FY25,
+popmart,FY2025,revenue,37120.1,RMB m,PM_FY25,
+popmart,FY2025,gross_profit,26764.9,RMB m,PM_FY25,
+popmart,FY2025,adj_net_profit,13083.6,RMB m,PM_FY25,Non-IFRS adjusted
+popmart,FY2025,rev_asia_pacific,8011.0,RMB m,PM_FY25,
+popmart,FY2025,rev_americas,6806.2,RMB m,PM_FY25,
+popmart,FY2025,rev_europe_other,1451.1,RMB m,PM_FY25,
+popmart,FY2025,stores_asia_pacific,85,stores,PM_FY25,
+popmart,FY2025,stores_americas,64,stores,PM_FY25,
+popmart,FY2025,stores_europe_other,36,stores,PM_FY25,
+popmart,FY2025,stores_total,630,stores,PM_FY25,
+popmart,FY2025,stores_mainland,410,stores,PM_FY25,
+popmart,FY2025,mainland_store_revenue,8502.7,RMB m,PM_FY25,Revenue from mainland China retail stores only
+popmart,FY2025,top_ip_revenue,14160.0,RMB m,PM_CALL25,THE MONSTERS (incl. LABUBU)
+popmart,FY2025,store_countries,20,countries,PM_STORES25,Countries with Pop Mart retail stores
+popmart,1H2025,revenue,13876.3,RMB m,PM_1H26,1H2025 comparatives in 1H2026 announcement
+popmart,1H2025,gross_margin,70.3,%,PM_1H26,
+popmart,1H2025,adj_net_profit,4709.6,RMB m,PM_1H26,Non-IFRS adjusted
+popmart,1H2025,rev_asia_pacific,2850.9,RMB m,PM_1H26,
+popmart,1H2025,rev_americas,2264.9,RMB m,PM_1H26,
+popmart,1H2025,rev_europe_other,477.7,RMB m,PM_1H26,
+popmart,1H2025,stores_asia_pacific,69,stores,PM_1H25,
+popmart,1H2025,stores_americas,41,stores,PM_1H25,
+popmart,1H2025,stores_europe_other,18,stores,PM_1H25,
+popmart,1H2025,stores_total,571,stores,PM_1H25,
+popmart,1H2026,revenue,17172.9,RMB m,PM_1H26,
+popmart,1H2026,gross_margin,69.7,%,PM_1H26,
+popmart,1H2026,adj_net_profit,5155.8,RMB m,PM_1H26,Non-IFRS adjusted
+popmart,1H2026,rev_asia_pacific,2575.0,RMB m,PM_1H26,
+popmart,1H2026,rev_americas,1891.6,RMB m,PM_1H26,
+popmart,1H2026,rev_europe_other,505.7,RMB m,PM_1H26,
+popmart,1H2026,stores_asia_pacific,90,stores,PM_1H26,
+popmart,1H2026,stores_americas,86,stores,PM_1H26,
+popmart,1H2026,stores_europe_other,45,stores,PM_1H26,
+popmart,1H2026,stores_total,676,stores,PM_1H26,
+popmart,1H2026,top_ip_revenue,4450.0,RMB m,PM_1H26_NEWS,THE MONSTERS (incl. LABUBU)
+miniso,FY2023,revenue,13838.8,RMB m,MN_FY24,FY2023 comparatives in FY2024 release
+miniso,FY2023,overseas_revenue,4705.0,RMB m,MN_FY24,MINISO brand overseas markets
+miniso,FY2023,gross_margin,41.2,%,MN_FY24,
+miniso,FY2023,adj_net_profit,2356.7,RMB m,MN_FY24,Non-IFRS adjusted
+miniso,FY2023,overseas_stores,2487,stores,MN_FY24,
+miniso,FY2023,overseas_stores_direct,238,stores,MN_FY24,
+miniso,FY2023,mainland_stores,3926,stores,MN_FY24,
+miniso,FY2024,revenue,16994.0,RMB m,MN_FY25,
+miniso,FY2024,overseas_revenue,6674.3,RMB m,MN_FY25,MINISO brand overseas markets
+miniso,FY2024,brand_revenue,16002.6,RMB m,MN_FY25,MINISO brand (mainland + overseas)
+miniso,FY2024,gross_margin,44.9,%,MN_FY25,
+miniso,FY2024,adj_net_profit,2720.6,RMB m,MN_FY25,Non-IFRS adjusted
+miniso,FY2024,overseas_stores,3118,stores,MN_FY25,
+miniso,FY2024,overseas_stores_direct,503,stores,MN_FY25,
+miniso,FY2024,overseas_stores_partner,404,stores,MN_FY25,
+miniso,FY2024,overseas_stores_distributor,2211,stores,MN_FY25,
+miniso,FY2024,mainland_stores,4386,stores,MN_FY25,
+miniso,FY2025,revenue,21443.8,RMB m,MN_FY25,
+miniso,FY2025,overseas_revenue,8628.8,RMB m,MN_FY25,MINISO brand overseas markets
+miniso,FY2025,brand_revenue,19524.9,RMB m,MN_FY25,MINISO brand (mainland + overseas)
+miniso,FY2025,gross_margin,45.0,%,MN_FY25,
+miniso,FY2025,adj_net_profit,2898.2,RMB m,MN_FY25,Non-IFRS adjusted
+miniso,FY2025,overseas_stores,3583,stores,MN_FY25,
+miniso,FY2025,overseas_stores_direct,700,stores,MN_FY25,
+miniso,FY2025,overseas_stores_partner,432,stores,MN_FY25,
+miniso,FY2025,overseas_stores_distributor,2451,stores,MN_FY25,
+miniso,FY2025,mainland_stores,4568,stores,MN_FY25,
+miniso,1H2025,revenue,9393.1,RMB m,MN_1H26,1H2025 comparatives in 1H2026 release
+miniso,1H2025,overseas_revenue,3534.0,RMB m,MN_1H26,MINISO brand overseas markets
+miniso,1H2025,gross_margin,44.3,%,MN_1H26,Release states 1H2026 gross margin was flat year over year
+miniso,1H2025,adj_net_profit,1279.5,RMB m,MN_1H26,Non-IFRS adjusted
+miniso,1H2025,overseas_stores,3307,stores,MN_1H26,
+miniso,1H2025,overseas_stores_direct,579,stores,MN_1H26,
+miniso,1H2025,overseas_stores_partner,425,stores,MN_1H26,
+miniso,1H2025,overseas_stores_distributor,2303,stores,MN_1H26,
+miniso,1H2025,mainland_stores,4305,stores,MN_1H26,
+miniso,1H2026,revenue,11498.9,RMB m,MN_1H26,
+miniso,1H2026,overseas_revenue,4059.3,RMB m,MN_1H26,MINISO brand overseas markets
+miniso,1H2026,gross_margin,44.3,%,MN_1H26,
+miniso,1H2026,adj_net_profit,1079.1,RMB m,MN_1H26,Non-IFRS adjusted
+miniso,1H2026,overseas_stores,3644,stores,MN_1H26,
+miniso,1H2026,overseas_stores_direct,795,stores,MN_1H26,
+miniso,1H2026,overseas_stores_partner,439,stores,MN_1H26,
+miniso,1H2026,overseas_stores_distributor,2410,stores,MN_1H26,
+miniso,1H2026,mainland_stores,4665,stores,MN_1H26,
+miniso,1H2026,store_countries,113,countries,MN_1H26,Countries and regions
+mixue,FY2022,overseas_stores,1795,stores,MX_PROSP,Stores outside mainland China
+mixue,FY2023,overseas_stores,4331,stores,MX_PROSP,Stores outside mainland China
+mixue,9M2024,overseas_stores,4792,stores,MX_PROSP,At 30 Sep 2024
+mixue,9M2024,stores_indonesia,2667,stores,MX_PROSP,At 30 Sep 2024
+mixue,9M2024,stores_vietnam,1304,stores,MX_PROSP,At 30 Sep 2024
+mixue,FY2024,revenue,24828.9,RMB m,MX_FY25,FY2024 comparatives in FY2025 announcement
+mixue,FY2024,gross_profit,8060.2,RMB m,MX_FY25,
+mixue,FY2024,net_profit,4454.2,RMB m,MX_FY25,Reported profit for the year (no adjusted figure)
+mixue,FY2024,stores_total,46479,stores,MX_FY25,
+mixue,FY2024,overseas_stores,4895,stores,MX_FY25,Stores outside mainland China
+mixue,FY2025,revenue,33559.9,RMB m,MX_FY25,
+mixue,FY2025,gross_profit,10451.8,RMB m,MX_FY25,
+mixue,FY2025,net_profit,5927.1,RMB m,MX_FY25,Reported profit for the year (no adjusted figure)
+mixue,FY2025,goods_equipment_revenue,32766.0,RMB m,MX_FY25,Sales of goods and equipment to franchisees
+mixue,FY2025,stores_total,59823,stores,MX_FY25,
+mixue,FY2025,overseas_stores,4467,stores,MX_FY25,Stores outside mainland China
+mixue,FY2025,franchised_stores,59785,stores,MX_FY25,
+mixue,1H2025,revenue,14874.8,RMB m,MX_1H26,1H2025 comparatives in 1H2026 announcement
+mixue,1H2025,gross_profit,4706.4,RMB m,MX_1H26,
+mixue,1H2025,net_profit,2718.2,RMB m,MX_1H26,Reported profit for the period
+mixue,1H2025,stores_total,53014,stores,MX_1H26,
+mixue,1H2025,overseas_stores,4733,stores,MX_1H26,Stores outside mainland China
+mixue,1H2026,revenue,15215.8,RMB m,MX_1H26,
+mixue,1H2026,gross_profit,4629.7,RMB m,MX_1H26,
+mixue,1H2026,net_profit,2319.3,RMB m,MX_1H26,Reported profit for the period
+mixue,1H2026,stores_total,63987,stores,MX_1H26,
+mixue,1H2026,overseas_stores,4378,stores,MX_1H26,Stores outside mainland China
+mixue,1H2026,franchised_stores,63951,stores,MX_1H26,
+mixue,1H2026,store_countries,17,countries,MX_1H26_NEWS,Countries incl. mainland China (16 overseas)

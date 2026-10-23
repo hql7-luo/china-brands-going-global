@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Whose Model Travels?</title>
+<meta name="description" content="Pop Mart vs MINISO vs Mixue: an interactive replicability scorecard built on company filings.">
+<style>
+  :root {
+    color-scheme: light;
+    --page: #f9f9f7; --surface: #fcfcfb; --ink: #0b0b0b; --ink2: #52514e; --muted: #898781;
+    --grid: #e1e0d9; --axis: #c3c2b7; --ring: rgba(11,11,11,0.10);
+    --popmart: #2a78d6; --miniso: #eb6834; --mixue: #1baf7a;
+    --s1: #cde2fb; --s2: #9ec5f4; --s3: #5598e7; --s4: #256abf; --s5: #104281;
+    --t1: #0b0b0b; --t2: #0b0b0b; --t3: #ffffff; --t4: #ffffff; --t5: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --page: #0d0d0d; --surface: #1a1a19; --ink: #f0efec; --ink2: #c3c2b7; --muted: #898781;
+      --grid: #2c2c2a; --axis: #383835; --ring: rgba(255,255,255,0.10);
+      --popmart: #3987e5; --miniso: #d95926; --mixue: #199e70;
+      --s1: #184f95; --s2: #1c5cab; --s3: #256abf; --s4: #3987e5; --s5: #86b6ef;
+      --t1: #f0efec; --t2: #ffffff; --t3: #ffffff; --t4: #ffffff; --t5: #0b0b0b;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19; --ink: #f0efec; --ink2: #c3c2b7; --muted: #898781;
+    --grid: #2c2c2a; --axis: #383835; --ring: rgba(255,255,255,0.10);
+    --popmart: #3987e5; --miniso: #d95926; --mixue: #199e70;
+    --s1: #184f95; --s2: #1c5cab; --s3: #256abf; --s4: #3987e5; --s5: #86b6ef;
+      --t1: #f0efec; --t2: #ffffff; --t3: #ffffff; --t4: #ffffff; --t5: #0b0b0b;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--page); color: var(--ink);
+    font: 15px/1.55 Inter, system-ui, -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 32px 16px 56px; }
+  header { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
+  .eyebrow { color: var(--muted); font-size: 13px; letter-spacing: .02em; margin: 0 0 6px; }
+  .rank-name, .eyebrow { word-break: keep-all; }
+  h1 { font-size: 30px; line-height: 1.2; margin: 0 0 10px; font-weight: 650; }
+  .lede { font-size: 17px; color: var(--ink2); margin: 0; max-width: 720px; }
+  .lede b { color: var(--ink); }
+  .lang { display: flex; border: 1px solid var(--ring); border-radius: 8px; overflow: hidden; flex: none; }
+  .lang button { border: 0; background: transparent; color: var(--ink2); padding: 6px 10px; font: inherit; font-size: 13px; cursor: pointer; }
+  .lang button.on { background: var(--surface); color: var(--ink); font-weight: 600; }
+  .card { background: var(--surface); border: 1px solid var(--ring); border-radius: 12px; padding: 20px; margin-top: 20px; }
+  h2 { font-size: 17px; margin: 0 0 4px; font-weight: 600; }
+  .sub { color: var(--ink2); font-size: 13.5px; margin: 0 0 16px; }
+  .presets { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+  .presets button {
+    font: inherit; font-size: 13px; padding: 6px 12px; border-radius: 999px; cursor: pointer;
+    border: 1px solid var(--axis); background: transparent; color: var(--ink2);
+  }
+  .presets button.on { border-color: var(--ink); color: var(--ink); font-weight: 600; }
+  .rank { display: grid; gap: 10px; }
+  .rank-row { display: grid; grid-template-columns: 92px 1fr 48px; align-items: center; gap: 12px; }
+  .rank-name { font-weight: 600; display: flex; align-items: center; gap: 8px; white-space: nowrap; }
+  .key { width: 10px; height: 10px; border-radius: 3px; flex: none; }
+  .track { height: 22px; position: relative; border-bottom: 1px solid var(--axis); }
+  .bar { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 0 4px 4px 0; transition: width .25s ease; }
+  .rank-val { font-variant-numeric: tabular-nums; font-weight: 600; text-align: right; }
+  .rank-note { color: var(--muted); font-size: 12.5px; margin-top: 10px; }
+  .dims { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; }
+  .dim { border: 1px solid var(--ring); border-radius: 10px; padding: 14px; }
+  .dim-head { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+  .dim-title { font-weight: 600; }
+  .dim-w { color: var(--ink2); font-size: 13px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  input[type=range] { width: 100%; margin: 8px 0 10px; accent-color: var(--ink2); }
+  .ev { display: grid; grid-template-columns: 26px 1fr; gap: 8px; align-items: start; font-size: 13px; color: var(--ink2); margin-top: 7px; }
+  .chip { width: 26px; height: 22px; border-radius: 5px; display: grid; place-items: center; font-size: 12.5px; font-weight: 650; }
+  .ev b { color: var(--ink); font-weight: 600; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th, td { text-align: right; padding: 8px 6px; border-bottom: 1px solid var(--grid); font-variant-numeric: tabular-nums; }
+  th:first-child, td:first-child { text-align: left; }
+  th { color: var(--ink2); font-weight: 600; font-size: 12.5px; }
+  th .key { display: inline-block; margin-right: 6px; vertical-align: 0; }
+  .na { color: var(--muted); }
+  .table-wrap { overflow-x: auto; }
+  footer { color: var(--muted); font-size: 12.5px; margin-top: 28px; }
+  footer a { color: var(--ink2); }
+  @media (max-width: 560px) {
+    h1 { font-size: 24px; }
+    .lede { font-size: 15.5px; }
+    .rank-row { grid-template-columns: 90px 1fr 40px; gap: 10px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <p class="eyebrow" data-t="eyebrow"></p>
+      <h1 data-t="title"></h1>
+      <p class="lede" data-t="lede"></p>
+    </div>
+    <div class="lang" role="group" aria-label="Language">
+      <button data-lang="en">EN</button><button data-lang="zh">中文</button>
+    </div>
+  </header>
+
+  <section class="card">
+    <h2 data-t="rankTitle"></h2>
+    <p class="sub" data-t="rankSub"></p>
+    <div class="presets" id="presets"></div>
+    <div class="rank" id="rank"></div>
+    <p class="rank-note" data-t="rankNote"></p>
+  </section>
+
+  <section class="card">
+    <h2 data-t="dimsTitle"></h2>
+    <p class="sub" data-t="dimsSub"></p>
+    <div class="dims" id="dims"></div>
+  </section>
+
+  <section class="card">
+    <h2 data-t="tableTitle"></h2>
+    <p class="sub" data-t="tableSub"></p>
+    <div class="table-wrap"><table id="metrics"></table></div>
+  </section>
+
+  <footer>
+    <span data-t="footer"></span>
+    <a href="https://github.com/hql7-luo/china-brands-going-global">GitHub</a>
+  </footer>
+</div>
+
+<script src="data.js"></script>
+<script>
+  const D = window.DATA;
+  const ORDER = ["miniso", "mixue", "popmart"];
+  const COLOR = { popmart: "var(--popmart)", miniso: "var(--miniso)", mixue: "var(--mixue)" };
+
+  const T = {
+    en: {
+      eyebrow: "Independent project · Haoqi Luo · Data as of Oct 2026",
+      title: "Chinese consumer brands going global: whose model travels?",
+      lede: "<b>MINISO's model is the most replicable.</b> Pop Mart's is the most profitable but the hardest to copy. Mixue's works at home, but its first overseas wave has stalled.",
+      rankTitle: "Weighted replicability score",
+      rankSub: "Pick a preset or move the sliders below. Scores run from 1 (weak) to 5 (strong).",
+      rankNote: "In 10,000 random weightings, MINISO ranks first 74% of the time, Mixue 20%, Pop Mart 6%.",
+      dimsTitle: "Six dimensions, with the evidence",
+      dimsSub: "Each score comes from FY2025 and 1H2026 company disclosures.",
+      tableTitle: "Key numbers",
+      tableSub: "RMB. Overseas follows each company's own definition. Blank = not disclosed.",
+      footer: "Sources: company annual and interim results announcements. Not investment advice. ",
+      weight: "weight",
+      presets: { equal: "Equal weights", reach: "Reach first", profit: "Profit first", light: "Capital-light first" },
+      dims: {
+        breadth: "Proven in many markets", hit_independence: "Not reliant on one hit",
+        capital_light: "Partners fund the stores", transferability: "Other brands can learn it",
+        momentum: "Latest overseas trend", unit_economics: "Profitability"
+      },
+      rows: {
+        rev: "Revenue, FY2025", ovs: "Overseas revenue, FY2025", ovs_share: "Overseas share, FY2025",
+        ovs_yoy: "Overseas revenue YoY, 1H2026", stores: "Overseas stores, Jun 2026",
+        stores_yoy: "Overseas stores YoY, Jun 2026", gm: "Gross margin, FY2025", nm: "Net margin*, FY2025",
+        rps: "Brand revenue per store, FY2025"
+      },
+      nmNote: "*Adjusted where reported; Mixue uses reported profit. Revenue per store: Pop Mart uses mainland China retail stores only.",
+      bn: "bn", m: "m"
+    },
+    zh: {
+      eyebrow: "独立项目 · 罗浩绮 · 数据截至 2026 年 10 月",
+      title: "中国消费品牌出海：谁的模式更可复制？",
+      lede: "<b>名创优品的模式最可复制。</b>泡泡玛特最赚钱，但最难复制。蜜雪的模式在国内跑通了，第一轮出海遇到了瓶颈。",
+      rankTitle: "加权可复制性得分",
+      rankSub: "选一个预设，或拖动下方滑块调整权重。分数 1（弱）到 5（强）。",
+      rankNote: "随机生成 10,000 组权重：名创优品 74% 排第一，蜜雪 20%，泡泡玛特 6%。",
+      dimsTitle: "六个维度和依据",
+      dimsSub: "每个分数都来自 2025 年和 2026 年上半年的公司披露。",
+      tableTitle: "关键数据",
+      tableSub: "人民币。海外按各公司自己的口径。空白 = 未披露。",
+      footer: "来源：公司年报和中报公告。不构成投资建议。",
+      weight: "权重",
+      presets: { equal: "等权重", reach: "看扩张", profit: "看盈利", light: "看资本效率" },
+      dims: {
+        breadth: "多市场验证", hit_independence: "不依赖单一爆款",
+        capital_light: "门店由伙伴出资", transferability: "其他品牌能学",
+        momentum: "最新海外势头", unit_economics: "盈利能力"
+      },
+      rows: {
+        rev: "总收入，2025 年", ovs: "海外收入，2025 年", ovs_share: "海外收入占比，2025 年",
+        ovs_yoy: "海外收入同比，2026 上半年", stores: "海外门店，2026 年 6 月",
+        stores_yoy: "海外门店同比，2026 年 6 月", gm: "毛利率，2025 年", nm: "净利率*，2025 年",
+        rps: "品牌方单店收入，2025 年"
+      },
+      nmNote: "*有经调整口径的用经调整；蜜雪用报告净利润。单店收入：泡泡玛特仅为中国内地零售门店。",
+      bn: "亿", m: "万"
+    }
+  };
+
+  const DIMS = ["breadth", "hit_independence", "capital_light", "transferability", "momentum", "unit_economics"];
+  const PRESETS = {
+    equal:  { breadth: 1, hit_independence: 1, capital_light: 1, transferability: 1, momentum: 1, unit_economics: 1 },
+    reach:  { breadth: 3, hit_independence: 1, capital_light: 2, transferability: 2, momentum: 1, unit_economics: 1 },
+    profit: { breadth: 1, hit_independence: 1, capital_light: 1, transferability: 1, momentum: 2, unit_economics: 5 },
+    light:  { breadth: 1, hit_independence: 1, capital_light: 4, transferability: 2, momentum: 1, unit_economics: 1 }
+  };
+
+  let lang = "en";
+  let weights = { ...PRESETS.equal };
+  let activePreset = "equal";
+
+  const score = (dim, c) => D.scorecard.find(r => r.dimension === dim && r.company === c);
+  const name = c => (lang === "zh" ? { popmart: "泡泡玛特", miniso: "名创优品", mixue: "蜜雪集团" } : { popmart: "Pop Mart", miniso: "MINISO", mixue: "Mixue" })[c];
+  const metric = (c, p) => D.metrics.find(r => r.company === c && r.period === p);
+
+  function weighted(c) {
+    let total = 0, wsum = 0;
+    DIMS.forEach(d => { total += weights[d] * score(d, c).score; wsum += weights[d]; });
+    return wsum ? total / wsum : 0;
+  }
+
+  function renderText() {
+    document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
+    document.querySelectorAll("[data-t]").forEach(el => { el.innerHTML = T[lang][el.dataset.t]; });
+    document.querySelectorAll(".lang button").forEach(b => b.classList.toggle("on", b.dataset.lang === lang));
+  }
+
+  function renderPresets() {
+    const box = document.getElementById("presets");
+    box.innerHTML = "";
+    Object.keys(PRESETS).forEach(k => {
+      const b = document.createElement("button");
+      b.textContent = T[lang].presets[k];
+      b.className = k === activePreset ? "on" : "";
+      b.onclick = () => { weights = { ...PRESETS[k] }; activePreset = k; renderAll(); };
+      box.appendChild(b);
+    });
+  }
+
+  function renderRank() {
+    const rows = ORDER.map(c => ({ c, v: weighted(c) })).sort((a, b) => b.v - a.v);
+    document.getElementById("rank").innerHTML = rows.map(r => `
+      <div class="rank-row">
+        <div class="rank-name"><span class="key" style="background:${COLOR[r.c]}"></span>${name(r.c)}</div>
+        <div class="track"><div class="bar" style="width:${(r.v / 5) * 100}%;background:${COLOR[r.c]}"></div></div>
+        <div class="rank-val">${r.v.toFixed(2)}</div>
+      </div>`).join("");
+  }
+
+  function renderDims() {
+    const box = document.getElementById("dims");
+    box.innerHTML = DIMS.map(d => `
+      <div class="dim">
+        <div class="dim-head">
+          <span class="dim-title">${T[lang].dims[d]}</span>
+          <span class="dim-w">${T[lang].weight} ${weights[d]}</span>
+        </div>
+        <input type="range" min="0" max="5" step="1" value="${weights[d]}" data-dim="${d}" aria-label="${T[lang].dims[d]}">
+        ${ORDER.map(c => {
+          const s = score(d, c);
+          const ev = lang === "zh" ? s.evidence_zh : s.evidence_en;
+          return `<div class="ev"><span class="chip" style="background:var(--s${s.score});color:var(--t${s.score})">${s.score}</span><span><b>${name(c)}</b> · ${ev}</span></div>`;
+        }).join("")}
+      </div>`).join("");
+    box.querySelectorAll("input").forEach(inp => {
+      inp.oninput = e => {
+        weights[e.target.dataset.dim] = Number(e.target.value);
+        activePreset = null;
+        e.target.parentElement.querySelector(".dim-w").textContent = `${T[lang].weight} ${e.target.value}`;
+        renderPresets(); renderRank();
+      };
+    });
+  }
+
+  function money(v) {
+    if (v == null) return '<span class="na">–</span>';
+    return lang === "zh" ? `${(v / 100).toFixed(0)} ${T.zh.bn}` : `${(v / 1000).toFixed(1)} ${T.en.bn}`;
+  }
+  const pct = v => (v == null ? '<span class="na">–</span>' : `${v.toFixed(1)}%`);
+  const signed = v => (v == null ? '<span class="na">–</span>' : `${v > 0 ? "+" : ""}${v.toFixed(1)}%`);
+  const count = v => (v == null ? '<span class="na">–</span>' : Math.round(v).toLocaleString("en-US"));
+  function perStore(c) {
+    const r = D.store_model.find(x => x.company === c);
+    return lang === "zh" ? `${Math.round(r.revenue_per_store_rmb_m * 100)} ${T.zh.m}` : `${r.revenue_per_store_rmb_m.toFixed(1)} ${T.en.m}`;
+  }
+
+  function renderTable() {
+    const R = T[lang].rows;
+    const rows = [
+      [R.rev, c => money(metric(c, "FY2025").revenue)],
+      [R.ovs, c => money(metric(c, "FY2025").overseas_revenue)],
+      [R.ovs_share, c => pct(metric(c, "FY2025").overseas_revenue_share)],
+      [R.ovs_yoy, c => signed(metric(c, "1H2026").overseas_revenue_yoy)],
+      [R.stores, c => count(metric(c, "1H2026").overseas_stores)],
+      [R.stores_yoy, c => signed(metric(c, "1H2026").overseas_stores_yoy)],
+      [R.gm, c => pct(metric(c, "FY2025").gross_margin)],
+      [R.nm, c => pct(metric(c, "FY2025").net_margin)],
+      [R.rps, c => perStore(c)]
+    ];
+    const head = `<tr><th></th>${ORDER.map(c => `<th><span class="key" style="background:${COLOR[c]}"></span>${name(c)}</th>`).join("")}</tr>`;
+    const body = rows.map(([label, f]) => `<tr><td>${label}</td>${ORDER.map(c => `<td>${f(c)}</td>`).join("")}</tr>`).join("");
+    document.getElementById("metrics").innerHTML = head + body +
+      `<tr><td colspan="4" style="color:var(--muted);font-size:12px;border:0;padding-top:10px">${T[lang].nmNote}</td></tr>`;
+  }
+
+  function renderAll() { renderText(); renderPresets(); renderRank(); renderDims(); renderTable(); }
+
+  document.querySelectorAll(".lang button").forEach(b => {
+    b.onclick = () => {
+      lang = b.dataset.lang;
+      try { localStorage.setItem("lang", lang); } catch (e) {}
+      renderAll();
+    };
+  });
+  try {
+    const saved = localStorage.getItem("lang");
+    if (saved) lang = saved;
+    else if ((navigator.language || "").startsWith("zh")) lang = "zh";
+  } catch (e) {}
+  renderAll();
+</script>
+</body>
+</html>
