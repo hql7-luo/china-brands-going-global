@@ -102,4 +102,4 @@ python analysis/check_numbers.py   # 核对是否与公司披露一致
 
 ---
 
-独立项目，作者 [罗浩绮 Haoqi Luo](https://hql7-luo.github.io)。数据截至 2026 年 10 月。
+[罗浩绮](https://hql7-luo.github.io)的独立项目。我确定问题，核对数据和结果，并决定结论；代码实现借助了 AI 工具。数据截至 2026 年 10 月。

@@ -110,4 +110,4 @@ docs/          interactive scorecard page (GitHub Pages)
 
 ---
 
-Independent project by [Haoqi Luo](https://hql7-luo.github.io). Data as of October 2026.
+Independent project by [Haoqi Luo](https://hql7-luo.github.io). I chose the question, checked the data and results, and decided the conclusions. AI coding tools helped with the implementation. Data as of October 2026.
