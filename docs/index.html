@@ -44,6 +44,8 @@
   h1 { font-size: 30px; line-height: 1.2; margin: 0 0 10px; font-weight: 650; }
   .lede { font-size: 17px; color: var(--ink2); margin: 0; max-width: 720px; }
   .lede b { color: var(--ink); }
+  .update { font-size: 13.5px; color: var(--ink2); margin: 10px 0 0; max-width: 720px; }
+  .update b { color: var(--ink); }
   .lang { display: flex; border: 1px solid var(--ring); border-radius: 8px; overflow: hidden; flex: none; }
   .lang button { border: 0; background: transparent; color: var(--ink2); padding: 6px 10px; font: inherit; font-size: 13px; cursor: pointer; }
   .lang button.on { background: var(--surface); color: var(--ink); font-weight: 600; }
@@ -96,6 +98,7 @@
       <p class="eyebrow" data-t="eyebrow"></p>
       <h1 data-t="title"></h1>
       <p class="lede" data-t="lede"></p>
+      <p class="update" data-t="update"></p>
     </div>
     <div class="lang" role="group" aria-label="Language">
       <button data-lang="en">EN</button><button data-lang="zh">中文</button>
@@ -139,6 +142,7 @@
       eyebrow: "Independent project · Haoqi Luo · Data as of Oct 2026",
       title: "Chinese consumer brands going global: whose model travels?",
       lede: "<b>MINISO's model is the most replicable.</b> Pop Mart's is the most profitable but the hardest to copy. Mixue's works at home, but its first overseas wave has stalled.",
+      update: "<b>Q3 2026 update (Oct 27):</b> Pop Mart's Q3 revenue fell 45% to 50% year on year (unaudited preliminary figures), with the Americas down 70% to 75%. The single-IP risk has now played out. Scores below still use FY2025 and 1H2026 data.",
       rankTitle: "Weighted replicability score",
       rankSub: "Pick a preset or move the sliders below. Scores run from 1 (weak) to 5 (strong).",
       rankNote: "In 10,000 random weightings, MINISO ranks first 74% of the time, Mixue 20%, Pop Mart 6%.",
@@ -167,6 +171,7 @@
       eyebrow: "独立项目 · 罗浩绮 · 数据截至 2026 年 10 月",
       title: "中国消费品牌出海：谁的模式更可复制？",
       lede: "<b>名创优品的模式最可复制。</b>泡泡玛特最赚钱，但最难复制。蜜雪的模式在国内跑通了，第一轮出海遇到了瓶颈。",
+      update: "<b>2026 年三季度更新（10 月 27 日）：</b>泡泡玛特三季度整体收益同比下降 45%-50%（未经审核的初步数据），美洲下降 70%-75%，单一 IP 依赖的风险已经兑现。下方评分仍基于 2025 年和 2026 年上半年数据。",
       rankTitle: "加权可复制性得分",
       rankSub: "选一个预设，或拖动下方滑块调整权重。分数 1（弱）到 5（强）。",
       rankNote: "随机生成 10,000 组权重：名创优品 74% 排第一，蜜雪 20%，泡泡玛特 6%。",

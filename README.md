@@ -16,6 +16,8 @@
 - **Pop Mart** had the biggest overseas jump (RMB 4.2bn to 16.3bn in one year) and by far the best margins (72.1% gross, 35.2% adjusted net in FY2025). But THE MONSTERS (LABUBU) was 38% of FY2025 revenue, and when it cooled, overseas revenue fell 11.1% in 1H2026.
 - **Mixue** has the cheapest way to open a store (99.9% franchised), but overseas stores have fallen for three half-years in a row, to 4,378, with Indonesia and Vietnam both shrinking. It does not report overseas revenue.
 
+**Q3 2026 update (Oct 27, 2026).** Pop Mart's business update for the quarter ended Sep 30 (unaudited preliminary figures) showed revenue down 45% to 50% year on year: mainland China down 25% to 30%, Asia-Pacific down 65% to 70%, the Americas down 70% to 75%, and Europe and other regions down 50% to 55%. The single-IP risk has now played out. The scores and charts below still use FY2025 and 1H2026 filings. Source: Pop Mart announcement of Oct 27, 2026, as reported by [The Paper](https://www.thepaper.cn/newsDetail_forward_34343322) and [Beijing Daily](https://news.bjd.com.cn/2026/10/27/12008826.shtml).
+
 "Replicable" here means two things: the company can keep repeating the model in new markets, and other Chinese brands could learn it. It is scored separately from "profitable", because the two point to different winners.
 
 ## Key findings
