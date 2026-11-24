@@ -41,6 +41,8 @@
   header { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
   .eyebrow { color: var(--muted); font-size: 13px; letter-spacing: .02em; margin: 0 0 6px; }
   .rank-name, .eyebrow { word-break: keep-all; }
+  .back { margin: 0 0 12px; font-size: 13px; }
+  .back a { color: var(--ink2); text-decoration: none; border-bottom: 1px solid var(--ring); }
   h1 { font-size: 30px; line-height: 1.2; margin: 0 0 10px; font-weight: 650; }
   .lede { font-size: 17px; color: var(--ink2); margin: 0; max-width: 720px; }
   .lede b { color: var(--ink); }
@@ -95,6 +97,7 @@
 <div class="wrap">
   <header>
     <div>
+      <p class="back"><a id="case-link" href="https://hql7-luo.github.io/projects/china-brands-going-global.html" data-t="back"></a></p>
       <p class="eyebrow" data-t="eyebrow"></p>
       <h1 data-t="title"></h1>
       <p class="lede" data-t="lede"></p>
@@ -139,6 +142,7 @@
 
   const T = {
     en: {
+      back: "← Project case study",
       eyebrow: "Independent project · Haoqi Luo · Data as of Oct 2026",
       title: "Chinese consumer brands going global: whose model travels?",
       lede: "<b>MINISO's model is the most replicable.</b> Pop Mart's is the most profitable but the hardest to copy. Mixue's works at home, but its first overseas wave has stalled.",
@@ -168,6 +172,7 @@
       bn: "bn", m: "m"
     },
     zh: {
+      back: "← 返回项目案例",
       eyebrow: "独立项目 · 罗浩绮 · 数据截至 2026 年 10 月",
       title: "中国消费品牌出海：谁的模式更可复制？",
       lede: "<b>名创优品的模式最可复制。</b>泡泡玛特最赚钱，但最难复制。蜜雪的模式在国内跑通了，第一轮出海遇到了瓶颈。",
@@ -224,6 +229,7 @@
     document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
     document.querySelectorAll("[data-t]").forEach(el => { el.innerHTML = T[lang][el.dataset.t]; });
     document.querySelectorAll(".lang button").forEach(b => b.classList.toggle("on", b.dataset.lang === lang));
+    document.getElementById("case-link").href = "https://hql7-luo.github.io/projects/china-brands-going-global.html?lang=" + lang;
   }
 
   function renderPresets() {
@@ -310,14 +316,17 @@
     b.onclick = () => {
       lang = b.dataset.lang;
       try { localStorage.setItem("lang", lang); } catch (e) {}
+      // Keep the address in step, so a copied link opens in the language on screen.
+      try { const url = new URL(location.href); url.searchParams.set("lang", lang); history.replaceState(history.state, "", url); } catch (e) {}
       renderAll();
     };
   });
-  try {
-    const saved = localStorage.getItem("lang");
-    if (saved) lang = saved;
-    else if ((navigator.language || "").startsWith("zh")) lang = "zh";
-  } catch (e) {}
+  // A link's ?lang= wins, then this page's last choice, then the portfolio site's language (same origin), then the browser.
+  const pick = v => (v === "en" || v === "zh" ? v : null);
+  const urlLang = pick(new URLSearchParams(location.search).get("lang"));
+  let stored = null;
+  try { stored = pick(localStorage.getItem("lang")) || pick(localStorage.getItem("portfolio-language")); } catch (e) {}
+  lang = urlLang || stored || ((navigator.language || "").startsWith("zh") ? "zh" : "en");
   renderAll();
 </script>
 </body>
